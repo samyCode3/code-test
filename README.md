@@ -9,34 +9,13 @@
 $ npm install
 ```
 ## Prisma Initiazation
-##You have to init prisma to connect to the postgres database
-$ Run: npx prisma init 
+$ npm prisma init 
 ## Prisma will automatically creat an .env file containing a connection string
 DATABASE_URL="postgresql://<username>:<password>@localhost:6000/<your database>?schema=public"
 make sure if ur password contain any specail characters replace than with there hard encode string
 Example: @ = %40 # = %23
-##After prisma init make sure you have postgres install, Copy the model into the schema.prisma
 
-$ model Wizard {
-  id         Int      @id @default(autoincrement())
-  first_name String
-  last_name  String?
-  spells     spells[]
-}
 
-model spells {
-  id       Int     @id @default(autoincrement())
-  title    String?
-  spells   String?
-  wizardId Int
-  wizard   Wizard  @relation(fields: [wizardId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-}
-
-model elixris {
-  id         Int     @id @default(autoincrement())
-  difficulty String?
-  name       String
-}
 ## To migrate the database: 
 $npx prisma migrate dev --name=init
 ## To generate Schema
