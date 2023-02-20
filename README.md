@@ -16,7 +16,8 @@ DATABASE_URL="postgresql://<username>:<password>@localhost:6000/<your database>?
 make sure if ur password contain any specail characters replace than with there hard encode string
 Example: @ = %40 # = %23
 ##After prisma init make sure you have postgres install, Copy the model into the schema.prisma
-model Wizard {
+
+$ model Wizard {
   id         Int      @id @default(autoincrement())
   first_name String
   last_name  String?
