@@ -9,8 +9,7 @@
 $ npm install
 ```
 ## Prisma Initiazation
-$ npm prisma init 
-## Prisma will automatically creat an .env file containing a connection string
+## Create an env file and copy and paste the following connection string bellow
 DATABASE_URL="postgresql://<username>:<password>@localhost:6000/<your database>?schema=public"
 make sure if ur password contain any specail characters replace than with there hard encode string
 Example: @ = %40 # = %23
