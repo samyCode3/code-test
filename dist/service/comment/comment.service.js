@@ -73,7 +73,7 @@ let CommentService = exports.CommentService = class CommentService {
                 message: "Sorry user can't perform this action",
             };
         }
-        await this.comment.update({ ...payload }, { where: { id: commentId } });
+        await this.comment.update({ ...payload }, { where: { userId: id, id: commentId } });
         return {
             ok: true,
             status: 201,
@@ -81,8 +81,9 @@ let CommentService = exports.CommentService = class CommentService {
             body: {},
         };
     }
-    async deleteComment(commentId) {
-        await this.comment.destroy({ where: { id: commentId } });
+    async deleteComment(commentId, data) {
+        const { id } = data.user;
+        await this.comment.destroy({ where: { userId: id, id: commentId } });
         return {
             ok: true,
             status: 201,

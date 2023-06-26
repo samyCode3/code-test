@@ -73,7 +73,7 @@ export class PostService {
         message: 'You are not authorize to make this request',
       };
     }
-    await this.post.update({ ...payload }, { where: { id: postId } });
+    await this.post.update({ ...payload }, { where: { userId: id,  id: postId } });
     return {
       ok: true,
       status: 200,
@@ -82,8 +82,9 @@ export class PostService {
     };
   }
 
-  async deletePost(postId: string) {
-    await this.post.destroy({ where: { id: postId } });
+  async deletePost(postId: string, data: IUser) {
+    const {id} = data.user
+    await this.post.destroy({ where: { userId: id, id: postId } });
     return {
       ok: true,
       status: 200,

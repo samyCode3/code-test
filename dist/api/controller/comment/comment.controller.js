@@ -58,9 +58,10 @@ let CommentController = exports.CommentController = class CommentController {
             return res.status(err.status).json({ ...err });
         }
     }
-    async remove(commentId, res) {
+    async remove(commentId, req, res) {
         try {
-            const comment = await this.comment.deleteComment(commentId);
+            const { user } = req;
+            const comment = await this.comment.deleteComment(commentId, user);
             return res.status(comment.status).json({ ...comment });
         }
         catch (err) {
@@ -105,9 +106,10 @@ __decorate([
 __decorate([
     (0, common_1.Delete)('/:commentId'),
     __param(0, (0, common_1.Param)('commentId')),
-    __param(1, (0, common_1.Response)()),
+    __param(1, (0, common_1.Request)()),
+    __param(2, (0, common_1.Response)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [Object, Object, Object]),
     __metadata("design:returntype", Promise)
 ], CommentController.prototype, "remove", null);
 exports.CommentController = CommentController = __decorate([

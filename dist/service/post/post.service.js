@@ -78,7 +78,7 @@ let PostService = exports.PostService = class PostService {
                 message: 'You are not authorize to make this request',
             };
         }
-        await this.post.update({ ...payload }, { where: { id: postId } });
+        await this.post.update({ ...payload }, { where: { userId: id, id: postId } });
         return {
             ok: true,
             status: 200,
@@ -86,8 +86,9 @@ let PostService = exports.PostService = class PostService {
             body: {},
         };
     }
-    async deletePost(postId) {
-        await this.post.destroy({ where: { id: postId } });
+    async deletePost(postId, data) {
+        const { id } = data.user;
+        await this.post.destroy({ where: { userId: id, id: postId } });
         return {
             ok: true,
             status: 200,

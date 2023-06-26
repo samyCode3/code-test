@@ -70,7 +70,7 @@ export class CommentService {
         message: "Sorry user can't perform this action",
       };
     }
-    await this.comment.update({ ...payload }, { where: { id: commentId } });
+    await this.comment.update({ ...payload }, { where: {userId: id, id: commentId } });
     return {
       ok: true,
       status: 201,
@@ -79,8 +79,9 @@ export class CommentService {
     };
   }
 
-  async deleteComment(commentId: string) {
-    await this.comment.destroy({ where: { id: commentId } });
+  async deleteComment(commentId: string, data: IUser) {
+    const {id} = data.user
+    await this.comment.destroy({ where: { userId: id, id: commentId } });
     return {
       ok: true,
       status: 201,

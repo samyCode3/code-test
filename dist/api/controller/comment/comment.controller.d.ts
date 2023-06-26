@@ -7,5 +7,5 @@ export declare class CommentController {
     getComment(res: any): Promise<any>;
     getCommentById(commentId: any, res: any): Promise<any>;
     update(updateComment: updateDto, commentId: any, req: any, res: any): Promise<any>;
-    remove(commentId: any, res: any): Promise<any>;
+    remove(commentId: any, req: any, res: any): Promise<any>;
 }

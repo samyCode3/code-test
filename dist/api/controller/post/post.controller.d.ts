@@ -7,5 +7,5 @@ export declare class PostController {
     getBlog(res: any): Promise<any>;
     getBlogById(postId: any, res: any): Promise<any>;
     update(updatePost: updateDto, postId: any, req: any, res: any): Promise<any>;
-    remove(postId: any, res: any): Promise<any>;
+    remove(postId: any, req: any, res: any): Promise<any>;
 }

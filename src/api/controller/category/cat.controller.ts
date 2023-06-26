@@ -84,7 +84,7 @@ export class CatController {
   }
 
   @Delete('/:id')
-  async remove(@Param('id') id: string, @Response() res) {
+  async remove(@Param('id') id: string,  @Response() res) {
     try {
       const category = await this.category.remove(id);
       return res.status(category.status).json({ ...category });

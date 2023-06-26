@@ -65,9 +65,10 @@ export class PostController {
   }
 
   @Delete('/:postId')
-  async remove(@Param('postId') postId, @Response() res) {
+  async remove(@Param('postId') postId, @Request() req, @Response() res) {
     try {
-      const post = await this.post.deletePost(postId);
+      const {user} = req
+      const post = await this.post.deletePost(postId, user);
       return res.status(post.status).json({ ...post });
     } catch (err) {
       return res.status(err.status).json({ ...err });

@@ -25,7 +25,6 @@ let AuthMiddleware = exports.AuthMiddleware = class AuthMiddleware {
         catch (err) {
             return res.status(403).json({ ok: false, status: 403, message: err.message });
         }
-        return res.status(401).json({ ok: false, status: 401, message: "User is not authorized" });
     }
 };
 exports.AuthMiddleware = AuthMiddleware = __decorate([

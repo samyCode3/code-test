@@ -63,9 +63,10 @@ export class CommentController {
   }
 
   @Delete('/:commentId')
-  async remove(@Param('commentId') commentId, @Response() res) {
+  async remove(@Param('commentId') commentId, @Request() req, @Response() res) {
     try {
-      const comment = await this.comment.deleteComment(commentId);
+      const {user} = req
+      const comment = await this.comment.deleteComment(commentId, user);
       return res.status(comment.status).json({ ...comment });
     } catch (err) {
       return res.status(err.status).json({ ...err });

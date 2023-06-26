@@ -34,7 +34,7 @@ export declare class CommentService {
         message: string;
         body: {};
     }>;
-    deleteComment(commentId: string): Promise<{
+    deleteComment(commentId: string, data: IUser): Promise<{
         ok: boolean;
         status: number;
         message: string;

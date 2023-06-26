@@ -34,7 +34,7 @@ export declare class PostService {
         message: string;
         body: {};
     }>;
-    deletePost(postId: string): Promise<{
+    deletePost(postId: string, data: IUser): Promise<{
         ok: boolean;
         status: number;
         message: string;

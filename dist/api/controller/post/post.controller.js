@@ -57,9 +57,10 @@ let PostController = exports.PostController = class PostController {
             return res.status(err.status).json({ ...err });
         }
     }
-    async remove(postId, res) {
+    async remove(postId, req, res) {
         try {
-            const post = await this.post.deletePost(postId);
+            const { user } = req;
+            const post = await this.post.deletePost(postId, user);
             return res.status(post.status).json({ ...post });
         }
         catch (err) {
@@ -105,9 +106,10 @@ __decorate([
 __decorate([
     (0, common_1.Delete)('/:postId'),
     __param(0, (0, common_1.Param)('postId')),
-    __param(1, (0, common_1.Response)()),
+    __param(1, (0, common_1.Request)()),
+    __param(2, (0, common_1.Response)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [Object, Object, Object]),
     __metadata("design:returntype", Promise)
 ], PostController.prototype, "remove", null);
 exports.PostController = PostController = __decorate([
