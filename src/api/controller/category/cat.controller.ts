@@ -17,13 +17,13 @@ import { AuthMiddleware } from 'src/common/middleware/auth.middleware';
 
 
 @Controller('category')
+@ApiBearerAuth()
+@UseGuards(AuthMiddleware)
 export class CatController {
   constructor(private category: CategoryService) {}
-  @ApiBearerAuth()
   @Post('/create')
   @ApiCreatedResponse({ description : 'Create Category'})
   @ApiBody({type: categoryDto})
-  @UseGuards()
   
   async create(@Body() categoryDtos: categoryDto, @Response() res) {
     try {
@@ -33,10 +33,10 @@ export class CatController {
       return res.status(err.status).json({ ...err });
     }
   }
-  @ApiBearerAuth()
-  @ApiCreatedResponse({ description : 'Get Category'})
+ 
+
   @Get('/getCategory')
-  @UseGuards(AuthMiddleware)
+  @ApiCreatedResponse({ description : 'Get Category'})
   async getCategorys(@Response() res) {
     try {
       const category = await this.category.getCategory();

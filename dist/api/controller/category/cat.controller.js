@@ -78,11 +78,9 @@ let CatController = exports.CatController = class CatController {
     }
 };
 __decorate([
-    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Post)('/create'),
     (0, swagger_1.ApiCreatedResponse)({ description: 'Create Category' }),
     (0, swagger_1.ApiBody)({ type: category_dto_1.categoryDto }),
-    (0, common_1.UseGuards)(),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Response)()),
     __metadata("design:type", Function),
@@ -90,10 +88,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CatController.prototype, "create", null);
 __decorate([
-    (0, swagger_1.ApiBearerAuth)(),
-    (0, swagger_1.ApiCreatedResponse)({ description: 'Get Category' }),
     (0, common_1.Get)('/getCategory'),
-    (0, common_1.UseGuards)(auth_middleware_1.AuthMiddleware),
+    (0, swagger_1.ApiCreatedResponse)({ description: 'Get Category' }),
     __param(0, (0, common_1.Response)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -137,6 +133,8 @@ __decorate([
 ], CatController.prototype, "remove", null);
 exports.CatController = CatController = __decorate([
     (0, common_1.Controller)('category'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(auth_middleware_1.AuthMiddleware),
     __metadata("design:paramtypes", [category_service_1.CategoryService])
 ], CatController);
 //# sourceMappingURL=cat.controller.js.map

@@ -18,11 +18,14 @@ let AuthMiddleware = exports.AuthMiddleware = class AuthMiddleware {
         }
         const token = authHeader.split(" ")[1];
         const user = hashing.verifyToken(token, process.env.ACCESS_TOKEN);
-        if (!user) {
-            return res.status(401).json({ ok: false, status: 401, message: "User is not authorized" });
+        try {
+            req.user = user;
+            next();
         }
-        req.user = user;
-        next();
+        catch (err) {
+            return res.status(403).json({ ok: false, status: 403, message: err.message });
+        }
+        return res.status(401).json({ ok: false, status: 401, message: "User is not authorized" });
     }
 };
 exports.AuthMiddleware = AuthMiddleware = __decorate([
